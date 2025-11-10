@@ -1,0 +1,189 @@
+.home-container {
+  min-height: 200vh;
+  position: relative;
+  background-color: #000000;
+  padding: 40px;
+}
+
+.top-content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #39ff14;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.main-title {
+  font-size: 8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+}
+
+.dress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 60px 20px;
+  position: relative;
+}
+
+.dress-image {
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(57, 255, 20, 0.3));
+}
+
+.bottom-right-section {
+  position: absolute;
+  bottom: 100px;
+  right: 15%;
+  z-index: 2;
+  text-align: right;
+  max-width: 450px;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #39ff14;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .home-container {
+    padding: 30px 20px;
+    min-height: 180vh;
+  }
+  
+  .top-content {
+    min-height: 90vh;
+    padding: 30px 20px;
+  }
+  
+  .main-title {
+    font-size: 6rem;
+  }
+  
+  .subtitle {
+    font-size: 1.3rem;
+  }
+  
+  .dress-container {
+    min-height: 90vh;
+    padding: 40px 20px;
+  }
+  
+  .dress-image {
+    max-height: 50vh;
+  }
+  
+  .bottom-right-section {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 40px;
+    text-align: left;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  
+  .tagline {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 20px 15px;
+    min-height: 160vh;
+  }
+  
+  .top-content {
+    min-height: 80vh;
+    padding: 20px 15px;
+  }
+  
+  .main-title {
+    font-size: 4rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .dress-container {
+    min-height: 80vh;
+    padding: 30px 15px;
+  }
+  
+  .dress-image {
+    max-height: 40vh;
+  }
+  
+  .bottom-right-section {
+    margin-top: 30px;
+    padding: 0 15px;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    min-height: 140vh;
+  }
+  
+  .top-content {
+    min-height: 70vh;
+    padding: 15px 10px;
+  }
+  
+  .main-title {
+    font-size: 3rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .dress-container {
+    min-height: 70vh;
+    padding: 20px 10px;
+  }
+  
+  .dress-image {
+    max-height: 35vh;
+  }
+  
+  .tagline {
+    font-size: 0.9rem;
+  }
+}
+
