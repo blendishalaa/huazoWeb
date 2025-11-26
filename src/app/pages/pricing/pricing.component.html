@@ -1,0 +1,171 @@
+<div class="pricing-container">
+  <div class="pricing-header">
+    <h1 class="pricing-title">{{ translations.pricing.title }}</h1>
+    <p class="pricing-subtitle">
+      {{ translations.pricing.subtitle }}
+    </p>
+  </div>
+
+  <!-- Individual Plans -->
+  <div class="plans-section">
+    <h2 class="section-heading">{{ translations.pricing.individualPlans }}</h2>
+    <div class="pricing-plans">
+      <div
+        *ngFor="let plan of getPlansByUserType('Individual')"
+        [class.popular]="plan.popular"
+        class="plan-card"
+      >
+        <div *ngIf="plan.popular" class="popular-badge">
+          {{ translations.pricing.mostPopular }}
+        </div>
+
+        <div class="plan-header">
+          <div class="plan-tier">{{ plan.tier }}</div>
+          <h2 class="plan-name">{{ plan.name }}</h2>
+          <div class="plan-price">
+            <span class="price-amount">{{ plan.price }}</span>
+            <span class="price-currency">€</span>
+            <span class="price-period">/{{ plan.period }}</span>
+          </div>
+          <p class="plan-description">{{ plan.description }}</p>
+        </div>
+
+        <ul class="plan-features">
+          <li *ngFor="let feature of plan.features" class="feature-item">
+            <span class="check-icon">✓</span>
+            <span>{{ feature }}</span>
+          </li>
+        </ul>
+
+        <button [class]="plan.buttonClass" class="plan-button">
+          {{ plan.buttonText }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Company Plans -->
+  <div class="plans-section">
+    <h2 class="section-heading">{{ translations.pricing.companyPlans }}</h2>
+    <div class="pricing-plans">
+      <div
+        *ngFor="let plan of getPlansByUserType('Company')"
+        [class.popular]="plan.popular"
+        class="plan-card"
+      >
+        <div *ngIf="plan.popular" class="popular-badge">
+          {{ translations.pricing.mostPopular }}
+        </div>
+
+        <div class="plan-header">
+          <div class="plan-tier">{{ plan.tier }}</div>
+          <h2 class="plan-name">{{ plan.name }}</h2>
+          <div class="plan-price">
+            <span class="price-amount">{{ plan.price }}</span>
+            <span class="price-currency">€</span>
+            <span class="price-period">/{{ plan.period }}</span>
+          </div>
+          <p class="plan-description">{{ plan.description }}</p>
+        </div>
+
+        <ul class="plan-features">
+          <li *ngFor="let feature of plan.features" class="feature-item">
+            <span class="check-icon">✓</span>
+            <span>{{ feature }}</span>
+          </li>
+        </ul>
+
+        <button [class]="plan.buttonClass" class="plan-button">
+          {{ plan.buttonText }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Visibility Boosts Section -->
+  <div class="additional-section">
+    <h2 class="section-title">
+      <span class="star-icon">⭐</span>
+      {{ translations.pricing.visibilityBoosts }}
+    </h2>
+    <div class="table-wrapper">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>{{ translations.pricing.boostType }}</th>
+            <th>{{ translations.pricing.updatedPrice }}</th>
+            <th>{{ translations.pricing.duration }}</th>
+            <th>{{ translations.pricing.visibilityEffect }}</th>
+            <th>{{ translations.pricing.notes }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let boost of visibilityBoosts">
+            <td class="boost-type-cell">{{ boost.boostType }}</td>
+            <td class="price-cell">{{ boost.price.toFixed(2) }}</td>
+            <td>{{ boost.duration }}</td>
+            <td>{{ boost.visibilityEffect }}</td>
+            <td>{{ boost.notes }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Free Period Rules Section -->
+  <div class="additional-section">
+    <h2 class="section-title">
+      <span class="star-icon">⭐</span>
+      {{ translations.pricing.freePeriodRules }}
+    </h2>
+    <div class="table-wrapper">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>{{ translations.pricing.userType }}</th>
+            <th>{{ translations.pricing.freeUploadRules }}</th>
+            <th>{{ translations.pricing.timeLimit }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rule of freePeriodRules">
+            <td>{{ rule.userType }}</td>
+            <td>{{ rule.freeUploadRules }}</td>
+            <td>{{ rule.timeLimit }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="pricing-faq">
+    <h2 class="faq-title">{{ translations.pricing.faqTitle }}</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3 class="faq-question">{{ translations.pricing.faq.question1 }}</h3>
+        <p class="faq-answer">
+          {{ translations.pricing.faq.answer1 }}
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-question">{{ translations.pricing.faq.question2 }}</h3>
+        <p class="faq-answer">
+          {{ translations.pricing.faq.answer2 }}
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-question">{{ translations.pricing.faq.question3 }}</h3>
+        <p class="faq-answer">
+          {{ translations.pricing.faq.answer3 }}
+        </p>
+      </div>
+      <div class="faq-item">
+        <h3 class="faq-question">{{ translations.pricing.faq.question4 }}</h3>
+        <p class="faq-answer">
+          {{ translations.pricing.faq.answer4 }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

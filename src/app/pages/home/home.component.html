@@ -1,17 +1,117 @@
 <div class="home-container">
   <div class="top-content">
-    <p class="subtitle">{{ subtitle }}</p>
     <h1 class="main-title">{{ title }}</h1>
+    <p class="description">{{ description }}</p>
+    <div class="buttons-container">
+      <button class="btn btn-primary">Shkarko aplikacionin</button>
+    </div>
   </div>
-  
-  <div class="dress-container">
-    <img [src]="dressImagePath" alt="Dress" class="dress-image" />
+
+  <div class="why-huazo-section">
+    <h2 class="section-title">Pse Huazo?</h2>
+    <p class="section-subtitle">
+      Transformo garderobën tënde në një burim të ardhurash dhe gjej stilin tënd
+      pa shpenzuar shumë
+    </p>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h3 class="benefit-title">Fito nga Garderoba</h3>
+        <p class="benefit-text">
+          Rrobat që nuk i përdor më? Publikojë dhe fito para nga garderoba jote.
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <h3 class="benefit-title">Kursim Parash</h3>
+        <p class="benefit-text">
+          Mos shpenzo qindra për rroba që do t'i vish vetëm një herë. Huazoje
+          dhe kurse deri në 80%.
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <h3 class="benefit-title">Për Çdo Event</h3>
+        <p class="benefit-text">
+          Gjej diçka të përsosur. Për evente tuaja speciale
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <h3 class="benefit-title">Modë e Qëndrueshme</h3>
+        <p class="benefit-text">
+          Zgjidhje e zgjuar për mjedisin. Rishpërdor rrobat dhe kontribuo për
+          një planet më të pastër.
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <h3 class="benefit-title">Varietet i Pafund</h3>
+        <p class="benefit-text">
+          Qasje në mijëra artikuj nga butiqet dhe përdoruesit. Gjej stilin tënd
+          pa kufij.
+        </p>
+      </div>
+
+      <div class="benefit-card">
+        <h3 class="benefit-title">I Shpejtë dhe i Lehtë</h3>
+        <p class="benefit-text">
+          Rezervo dhe merr rrobat brenda pak orësh. Proces i thjeshtë dhe i
+          sigurt.
+        </p>
+      </div>
+    </div>
   </div>
-  
-  <div class="bottom-right-section">
-    <p class="tagline">{{ tagline }}</p>
+
+  <div class="how-it-works-section">
+    <h2 class="section-title">Si Funksionon</h2>
+    <p class="section-description">
+      Huazo është platforma ideale për të huazuar dhe marrë me qira rroba.
+      Shfletoni koleksionin, zgjidhni artikujt që ju pëlqejnë, dhe rezervoni për
+      ditën që ju nevojitet.
+    </p>
+
+    <div class="features-container">
+      <div class="feature-item">
+        <div class="feature-content">
+          <div class="feature-number">1</div>
+          <h3 class="feature-title">Kërko</h3>
+          <p class="feature-description">
+            Shkruaj madhësinë, ngjyrën ose qytetin.
+          </p>
+        </div>
+        <div class="feature-screen">
+          <img [src]="screen1Path" alt="Search Feature" class="screen-image" />
+        </div>
+      </div>
+
+      <div class="feature-item feature-reverse">
+        <div class="feature-content">
+          <div class="feature-number">2</div>
+          <h3 class="feature-title">Zbulo</h3>
+          <p class="feature-description">
+            Gjej fustanin perfekt nga butiqet dhe përdoruesit.
+          </p>
+        </div>
+        <div class="feature-screen">
+          <img
+            [src]="screen2Path"
+            alt="Discover Feature"
+            class="screen-image"
+          />
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-content">
+          <div class="feature-number">3</div>
+          <h3 class="feature-title">Kontakto & Huazo</h3>
+          <p class="feature-description">Lidhu direkt për ta marrë me qira</p>
+        </div>
+        <div class="feature-screen">
+          <img [src]="screen2Path" alt="Contact Feature" class="screen-image" />
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<app-about-section></app-about-section>
-

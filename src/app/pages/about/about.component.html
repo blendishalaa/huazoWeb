@@ -1,0 +1,55 @@
+<div class="about-container">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <h1 class="hero-title">About Huazo</h1>
+    <p class="hero-subtitle">
+      Revolutionizing fashion through sustainable clothing rental
+    </p>
+  </div>
+
+  <!-- Mission & Vision Section -->
+  <div class="mission-vision-section">
+    <div class="mission-card">
+      <h2 class="card-title">{{ mission.title }}</h2>
+      <p class="card-description">{{ mission.description }}</p>
+    </div>
+    <div class="vision-card">
+      <h2 class="card-title">{{ vision.title }}</h2>
+      <p class="card-description">{{ vision.description }}</p>
+    </div>
+  </div>
+
+  <!-- Story Section -->
+  <div class="story-section">
+    <h2 class="section-title">{{ story.title }}</h2>
+    <div class="story-content">
+      <p *ngFor="let paragraph of story.paragraphs" class="story-paragraph">
+        {{ paragraph }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Values Section -->
+  <div class="values-section">
+    <h2 class="section-title">Our Values</h2>
+    <div class="values-grid">
+      <div *ngFor="let value of values" class="value-card">
+        <h3 class="value-title">{{ value.title }}</h3>
+        <p class="value-description">{{ value.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="cta-section">
+    <h2 class="cta-title">Join the Huazo Community</h2>
+    <p class="cta-description">
+      Whether you want to rent amazing clothes or earn from your wardrobe, Huazo is here for you.
+    </p>
+    <div class="cta-buttons">
+      <button class="btn btn-primary">Get Started</button>
+      <button class="btn btn-secondary">Learn More</button>
+    </div>
+  </div>
+</div>
+

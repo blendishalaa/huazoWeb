@@ -1,0 +1,66 @@
+<div class="chat-widget-container" [class.show]="showWidget">
+  <!-- Chat Button -->
+  <button 
+    *ngIf="!isOpen && showWidget" 
+    class="chat-button" 
+    (click)="toggleChat()"
+    [attr.aria-label]="translations.chat?.openChat || 'Open chat'"
+    title="Chat">
+    <svg class="chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+
+  <!-- Chat Window -->
+  <div *ngIf="isOpen" class="chat-window">
+    <div class="chat-header">
+      <div class="chat-header-content">
+        <div class="chat-avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+        <div class="chat-header-text">
+          <h3 class="chat-title">{{ translations.chat?.title || 'Chat with us' }}</h3>
+          <p class="chat-subtitle">{{ translations.chat?.subtitle || 'We typically reply within minutes' }}</p>
+        </div>
+      </div>
+      <button class="chat-close" (click)="closeChat()" aria-label="Close chat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <div class="chat-body">
+      <div class="chat-message chat-message-bot">
+        <p>{{ translations.chat?.welcomeMessage || 'Hello! How can we help you today?' }}</p>
+      </div>
+      <div class="chat-message chat-message-bot">
+        <p>{{ translations.chat?.instruction || 'Type your message below and we\'ll continue the conversation on WhatsApp.' }}</p>
+      </div>
+    </div>
+
+    <div class="chat-footer">
+      <textarea
+        class="chat-input"
+        [(ngModel)]="message"
+        (keydown)="onKeyPress($event)"
+        [placeholder]="translations.chat?.placeholder || 'Type your message...'"
+        rows="3"
+      ></textarea>
+      <button 
+        class="chat-send" 
+        (click)="sendMessage()"
+        [disabled]="!message.trim()"
+        [attr.aria-label]="translations.chat?.send || 'Send message'">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
