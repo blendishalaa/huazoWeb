@@ -1,0 +1,180 @@
+<div *ngIf="isOpen" class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2 class="modal-title">{{ translations.addItem?.title || 'Add New Item' }}</h2>
+      <button type="button" class="close-button" (click)="closeModal()" aria-label="Close">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #addItemForm="ngForm" class="add-item-form">
+      <!-- Photo Upload Section -->
+      <div class="form-group">
+        <label class="form-label">{{ translations.addItem?.photos || 'Item Photos' }} *</label>
+        <div class="photo-upload-container">
+          <input
+            type="file"
+            id="photos"
+            name="photos"
+            multiple
+            accept="image/*"
+            (change)="onFileSelected($event)"
+            class="file-input"
+          />
+          <label for="photos" class="file-input-label">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <span>{{ translations.addItem?.uploadPhotos || 'Upload Photos' }}</span>
+          </label>
+        </div>
+        
+        <!-- Photo Previews -->
+        <div *ngIf="itemData.photoPreviews.length > 0" class="photo-preview-container">
+          <div *ngFor="let preview of itemData.photoPreviews; let i = index" class="photo-preview">
+            <img [src]="preview" alt="Preview" class="preview-image" />
+            <button type="button" class="remove-photo-btn" (click)="removePhoto(i)" aria-label="Remove photo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p class="form-hint">{{ translations.addItem?.photosHint || 'You can upload multiple photos' }}</p>
+      </div>
+
+      <!-- Item Name -->
+      <div class="form-group">
+        <label for="name" class="form-label">{{ translations.addItem?.itemName || 'Item Name' }} *</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="itemData.name"
+          required
+          class="form-input"
+          [placeholder]="translations.addItem?.itemNamePlaceholder || 'Enter item name'"
+        />
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description" class="form-label">{{ translations.addItem?.description || 'Description' }} *</label>
+        <textarea
+          id="description"
+          name="description"
+          [(ngModel)]="itemData.description"
+          required
+          rows="5"
+          class="form-textarea"
+          [placeholder]="translations.addItem?.descriptionPlaceholder || 'Describe your item...'"
+        ></textarea>
+      </div>
+
+      <!-- Pricing and Size Row -->
+      <div class="form-row">
+        <div class="form-group form-group-half">
+          <label for="pricing" class="form-label">{{ translations.addItem?.pricing || 'Pricing' }} (€) *</label>
+          <input
+            type="number"
+            id="pricing"
+            name="pricing"
+            [(ngModel)]="itemData.pricing"
+            required
+            min="0"
+            step="0.01"
+            class="form-input"
+            [placeholder]="translations.addItem?.pricingPlaceholder || '0.00'"
+          />
+        </div>
+
+        <div class="form-group form-group-half">
+          <label for="size" class="form-label">{{ translations.addItem?.size || 'Size' }} *</label>
+          <input
+            type="text"
+            id="size"
+            name="size"
+            [(ngModel)]="itemData.size"
+            required
+            class="form-input"
+            [placeholder]="translations.addItem?.sizePlaceholder || 'e.g., S, M, L, XL'"
+          />
+        </div>
+      </div>
+
+      <!-- Brand and Condition Row -->
+      <div class="form-row">
+        <div class="form-group form-group-half">
+          <label for="brand" class="form-label">{{ translations.addItem?.brand || 'Brand' }} ({{ translations.addItem?.optional || 'Optional' }})</label>
+          <input
+            type="text"
+            id="brand"
+            name="brand"
+            [(ngModel)]="itemData.brand"
+            class="form-input"
+            [placeholder]="translations.addItem?.brandPlaceholder || 'Enter brand name'"
+          />
+        </div>
+
+        <div class="form-group form-group-half">
+          <label for="condition" class="form-label">{{ translations.addItem?.condition || 'Condition' }} *</label>
+          <select
+            id="condition"
+            name="condition"
+            [(ngModel)]="itemData.condition"
+            required
+            class="form-input"
+          >
+            <option value="">{{ translations.addItem?.selectCondition || 'Select Condition' }}</option>
+            <option *ngFor="let option of conditionOptions" [value]="option.value">
+              {{ option.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Deposit -->
+      <div class="form-group">
+        <label for="deposit" class="form-label">{{ translations.addItem?.deposit || 'Deposit' }} (€) *</label>
+        <input
+          type="number"
+          id="deposit"
+          name="deposit"
+          [(ngModel)]="itemData.deposit"
+          required
+          min="0"
+          step="0.01"
+          class="form-input"
+          [placeholder]="translations.addItem?.depositPlaceholder || '0.00'"
+        />
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">
+          {{ translations.addItem?.cancel || 'Cancel' }}
+        </button>
+        <button
+          type="submit"
+          [disabled]="!addItemForm.valid || submitted"
+          class="btn btn-primary"
+        >
+          <span *ngIf="!submitted">{{ translations.addItem?.submitButton || 'Add Item' }}</span>
+          <span *ngIf="submitted">{{ translations.addItem?.submitting || 'Adding Item...' }}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+

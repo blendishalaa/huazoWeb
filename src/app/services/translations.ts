@@ -81,6 +81,197 @@ export interface Translations {
     placeholder: string;
     send: string;
     openChat: string;
+    sentConfirmation: string;
+    errorMessage: string;
+    sending: string;
+    sent: string;
+    failed: string;
+  };
+  
+  // Home Page
+  home: {
+    subtitle: string;
+    title: string;
+    description: string;
+    downloadApp: string;
+    addItem?: string;
+    whyHuazo: string;
+    whyHuazoSubtitle: string;
+    benefits: {
+      earnFromWardrobe: { title: string; text: string };
+      saveMoney: { title: string; text: string };
+      forEveryEvent: { title: string; text: string };
+      sustainable: { title: string; text: string };
+      endlessVariety: { title: string; text: string };
+      fastAndEasy: { title: string; text: string };
+    };
+    howItWorks: string;
+    howItWorksDescription: string;
+    steps: {
+      search: { title: string; description: string };
+      discover: { title: string; description: string };
+      contact: { title: string; description: string };
+    };
+  };
+  
+  // Add Item
+  addItem?: {
+    title: string;
+    photos: string;
+    uploadPhotos: string;
+    photosHint: string;
+    itemName: string;
+    itemNamePlaceholder: string;
+    description: string;
+    descriptionPlaceholder: string;
+    pricing: string;
+    pricingPlaceholder: string;
+    size: string;
+    sizePlaceholder: string;
+    brand: string;
+    brandPlaceholder: string;
+    optional: string;
+    condition: string;
+    selectCondition: string;
+    conditionNew: string;
+    conditionLikeNew: string;
+    conditionGood: string;
+    conditionFair: string;
+    deposit: string;
+    depositPlaceholder: string;
+    cancel: string;
+    submitButton: string;
+    submitting: string;
+    successMessage: string;
+    errorRequired: string;
+    errorNoPhotos: string;
+    errorInvalidPricing: string;
+    errorInvalidDeposit: string;
+  };
+  
+  // About Page
+  about: {
+    heroTitle: string;
+    heroSubtitle: string;
+    mission: { title: string; description: string };
+    vision: { title: string; description: string };
+    story: { title: string; paragraphs: string[] };
+    values: { title: string; values: Array<{ title: string; description: string }> };
+    cta: { title: string; description: string; getStarted: string; learnMore: string };
+  };
+  
+  // Contact Page
+  contact: {
+    heroTitle: string;
+    heroSubtitle: string;
+    sendMessage: string;
+    contactInfo: string;
+    followUs: string;
+    form: {
+      name: string;
+      email: string;
+      subject: string;
+      message: string;
+      namePlaceholder: string;
+      emailPlaceholder: string;
+      subjectPlaceholder: string;
+      messagePlaceholder: string;
+      sendButton: string;
+      sentButton: string;
+    };
+    info: {
+      email: string;
+      phone: string;
+      address: string;
+    };
+  };
+  
+  // Footer
+  footer: {
+    slogan: string;
+    company: string;
+    resources: string;
+    legal: string;
+    allRightsReserved: string;
+    links: {
+      blog: string;
+      careers: string;
+      pricing: string;
+      documentation: string;
+      papers: string;
+      pressConferences: string;
+      termsOfService: string;
+      privacyPolicy: string;
+      cookiesPolicy: string;
+      dataProcessing: string;
+    };
+  };
+  
+  // About Section Component
+  aboutSection: {
+    mainTitle: string;
+    sectionTitle: string;
+    features: Array<{ title: string; description: string }>;
+  };
+  
+  // Auth
+  auth?: {
+    login: {
+      title: string;
+      subtitle: string;
+      email: string;
+      emailPlaceholder: string;
+      password: string;
+      passwordPlaceholder: string;
+      submitButton: string;
+      loggingIn: string;
+      noAccount: string;
+      signUp: string;
+      errorRequired: string;
+    };
+    signup: {
+      title: string;
+      subtitle: string;
+      firstName: string;
+      firstNamePlaceholder: string;
+      lastName: string;
+      lastNamePlaceholder: string;
+      email: string;
+      emailPlaceholder: string;
+      password: string;
+      passwordPlaceholder: string;
+      dateOfBirth: string;
+      gender: string;
+      selectGender: string;
+      male: string;
+      female: string;
+      other: string;
+      preferNotToSay: string;
+      phone: string;
+      phonePlaceholder: string;
+      optional: string;
+      accountType: string;
+      person: string;
+      company: string;
+      submitButton: string;
+      creatingAccount: string;
+      hasAccount: string;
+      login: string;
+      errorRequired: string;
+      errorInvalidEmail: string;
+      errorPasswordLength: string;
+      verificationTitle: string;
+      verificationSubtitle: string;
+      verificationCode: string;
+      verificationCodePlaceholder: string;
+      verificationHint: string;
+      verifyButton: string;
+      verifying: string;
+      didntReceiveCode: string;
+      resendCode: string;
+      backToForm: string;
+      errorVerificationCode: string;
+    };
   };
 }
 
@@ -104,8 +295,8 @@ export const translations: { [key: string]: Translations } = {
       chooseGrowth: 'Zgjidh Growth',
       choosePro: 'Zgjidh Pro',
       contactSales: 'Kontakto Shitjet',
-      visibilityBoosts: 'Huazo Visibility Boosts (Çmimet e Rekomanduara të Përditësuara)',
-      freePeriodRules: 'Rregullat e Periudhës Falas (për qartësi)',
+      visibilityBoosts: 'Huazo Visibility Boosts',
+      freePeriodRules: 'Rregullat e Periudhës Falas',
       boostType: 'Lloji i Boost',
       updatedPrice: 'Çmimi i Përditësuar (€)',
       duration: 'Kohëzgjatja',
@@ -228,10 +419,277 @@ export const translations: { [key: string]: Translations } = {
       title: 'Bisedo me ne',
       subtitle: 'Zakonisht përgjigjemi brenda disa minutave',
       welcomeMessage: 'Përshëndetje! Si mund t\'ju ndihmojmë sot?',
-      instruction: 'Shkruani mesazhin tuaj më poshtë dhe klikoni "Dërgo". Mesazhi do të hapë WhatsApp me mesazhin tuaj të plotësuar - thjesht klikoni "Dërgo" në WhatsApp për ta dërguar.',
+      instruction: 'Shkruani mesazhin tuaj më poshtë dhe ne do t\'ju përgjigjemi në WhatsApp.',
       placeholder: 'Shkruani mesazhin tuaj...',
-      send: 'Hap WhatsApp',
-      openChat: 'Hap chat'
+      send: 'Dërgo',
+      openChat: 'Hap chat',
+      sentConfirmation: 'Mesazhi u dërgua! Do t\'ju përgjigjemi në WhatsApp shumë shpejt.',
+      errorMessage: 'Na vjen keq, ka ndodhur një gabim. Ju lutemi provoni përsëri.',
+      sending: 'Po dërgohet...',
+      sent: 'U dërgua',
+      failed: 'Dështoi'
+    },
+    home: {
+      subtitle: 'Vish. Kthe. Përsërit.',
+      title: 'HUAZO',
+      description: 'E gjithë garderoba juaj në një aplikacion.',
+      downloadApp: 'Shkarko aplikacionin',
+      addItem: 'Shto Artikull',
+      whyHuazo: 'Pse Huazo?',
+      whyHuazoSubtitle: 'Transformo garderobën tënde në një burim të ardhurash dhe gjej stilin tënd pa shpenzuar shumë',
+      benefits: {
+        earnFromWardrobe: {
+          title: 'Fito nga Garderoba',
+          text: 'Rrobat që nuk i përdor më? Publikojë dhe fito para nga garderoba jote.'
+        },
+        saveMoney: {
+          title: 'Kursim Parash',
+          text: 'Mos shpenzo qindra për rroba që do t\'i vish vetëm një herë. Huazoje dhe kurse deri në 80%.'
+        },
+        forEveryEvent: {
+          title: 'Për Çdo Event',
+          text: 'Gjej diçka të përsosur. Për evente tuaja speciale'
+        },
+        sustainable: {
+          title: 'Modë e Qëndrueshme',
+          text: 'Zgjidhje e zgjuar për mjedisin. Rishpërdor rrobat dhe kontribuo për një planet më të pastër.'
+        },
+        endlessVariety: {
+          title: 'Varietet i Pafund',
+          text: 'Qasje në mijëra artikuj nga butiqet dhe përdoruesit. Gjej stilin tënd pa kufij.'
+        },
+        fastAndEasy: {
+          title: 'I Shpejtë dhe i Lehtë',
+          text: 'Rezervo dhe merr rrobat brenda pak orësh. Proces i thjeshtë dhe i sigurt.'
+        }
+      },
+      howItWorks: 'Si Funksionon',
+      howItWorksDescription: 'Huazo është platforma ideale për të huazuar dhe marrë me qira rroba. Shfletoni koleksionin, zgjidhni artikujt që ju pëlqejnë, dhe rezervoni për ditën që ju nevojitet.',
+      steps: {
+        search: {
+          title: 'Kërko',
+          description: 'Shkruaj madhësinë, ngjyrën ose qytetin.'
+        },
+        discover: {
+          title: 'Zbulo',
+          description: 'Gjej fustanin perfekt nga butiqet dhe përdoruesit.'
+        },
+        contact: {
+          title: 'Kontakto & Huazo',
+          description: 'Lidhu direkt për ta marrë me qira'
+        }
+      }
+    },
+    about: {
+      heroTitle: 'Rreth Huazo',
+      heroSubtitle: 'Revolucionizimi i modës përmes qirasë së qëndrueshme të rrobave',
+      mission: {
+        title: 'Misioni Ynë',
+        description: 'Të revolucionizojmë mënyrën se si njerëzit mendojnë për modën duke e bërë qiranë e rrobave të arritshme, të qëndrueshme dhe të përballueshme për të gjithë. Ne besojmë se të gjithë meritojnë të duken të shkëlqyer pa koston mjedisore dhe financiare të modës së shpejtë.'
+      },
+      vision: {
+        title: 'Vizioni Ynë',
+        description: 'Të krijojmë një botë ku moda është rrethore, e qëndrueshme dhe e arritshme. Ne parashikojmë një të ardhme ku qira e rrobave është po aq e zakonshme sa blerja e tyre, duke reduktuar mbetjet dhe duke e bërë modën me cilësi të lartë të disponueshme për të gjithë.'
+      },
+      story: {
+        title: 'Historia Jonë',
+        paragraphs: [
+          'Huazo u lind nga një vëzhgim i thjeshtë: garderobat tona janë plot me rroba që rrallë i veshim, ndërsa të tjerët luftojnë për të gjetur opsione modë të përballueshme. Ne pamë një mundësi për t\'i lidhur këto dy grupe dhe për të krijuar vlerë për të gjithë.',
+          'E themeluar në 2024, Huazo filloi si një platformë e vogël që lidhte entuziastët e modës lokale. Sot, ne kemi rritur në një treg të gjithëpërfshirës që shërben mijëra përdorues që ndajnë vizionin tonë për modë të qëndrueshme.',
+          'Ekipi ynë është i pasionuar për ta bërë modën më të qëndrueshme dhe të arritshme. Ne punojmë pa u lodhur për të përmirësuar platformën tonë, për të zgjeruar komunitetin tonë dhe për ta bërë qiranë e rrobave sa më të lehtë dhe të këndshme.'
+        ]
+      },
+      values: {
+        title: 'Vlerat Tona',
+        values: [
+          {
+            title: 'Qëndrueshmëria',
+            description: 'Ne jemi të përkushtuar për të reduktuar mbetjet e modës dhe për të promovuar një ekonomi rrethore. Çdo qira zgjat jetën e rrobave dhe redukton ndikimin mjedisor.'
+          },
+          {
+            title: 'Aksesueshmëria',
+            description: 'Moda duhet të jetë e arritshme për të gjithë. Ne ofrojmë opsione qiraje të përballueshme që lejojnë njerëzit të shprehin stilin e tyre pa u thyer banka.'
+          },
+          {
+            title: 'Komuniteti',
+            description: 'Ne ndërtojmë lidhje midis njerëzve që ndajnë një pasion për modën. Platforma jonë i bashkon qiramarrësit dhe pronarët në një komunitet mbështetës.'
+          },
+          {
+            title: 'Cilësia',
+            description: 'Ne sigurojmë që të gjitha artikujt në platformën tonë të plotësojnë standarde të larta cilësie. Kënaqësia dhe siguria juaj janë prioritetet tona kryesore.'
+          }
+        ]
+      },
+      cta: {
+        title: 'Bashkohu me Komunitetin e Huazo',
+        description: 'Qoftë se dëshiron të marrësh me qira rroba të mrekullueshme ose të fitosh nga garderoba jote, Huazo është këtu për ty.',
+        getStarted: 'Fillo',
+        learnMore: 'Mëso Më Shumë'
+      }
+    },
+    contact: {
+      heroTitle: 'Na Kontaktoni',
+      heroSubtitle: 'Keni një pyetje ose dëshironi të mësoni më shumë? Do të donim të dëgjojmë nga ju.',
+      sendMessage: 'Na Dërgoni një Mesazh',
+      contactInfo: 'Informacioni i Kontaktit',
+      followUs: 'Na Ndiqni',
+      form: {
+        name: 'Emri',
+        email: 'Email',
+        subject: 'Subjekti',
+        message: 'Mesazhi',
+        namePlaceholder: 'Emri juaj',
+        emailPlaceholder: 'email.juaj@example.com',
+        subjectPlaceholder: 'Për çfarë bëhet fjala?',
+        messagePlaceholder: 'Na tregoni më shumë për pyetjen tuaj...',
+        sendButton: 'Dërgo Mesazhin',
+        sentButton: 'Mesazhi u Dërgua! ✓'
+      },
+      info: {
+        email: 'Email',
+        phone: 'Telefoni',
+        address: 'Adresa'
+      }
+    },
+    footer: {
+      slogan: 'Ne po rrisim biznesin tuaj me menaxher personal AI.',
+      company: 'Kompania',
+      resources: 'Burimet',
+      legal: 'Ligjore',
+      allRightsReserved: 'Të gjitha të drejtat e rezervuara.',
+      links: {
+        blog: 'Blog',
+        careers: 'Karriera',
+        pricing: 'Çmimet',
+        documentation: 'Dokumentacioni',
+        papers: 'Letrat',
+        pressConferences: 'Konferencat e Shtypit',
+        termsOfService: 'Kushtet e Shërbimit',
+        privacyPolicy: 'Politika e Privatësisë',
+        cookiesPolicy: 'Politika e Cookies',
+        dataProcessing: 'Përpunimi i të Dhënave'
+      }
+    },
+    aboutSection: {
+      mainTitle: 'Jepu Fustaneve Një Histori të Re!',
+      sectionTitle: 'Rreth Nesh – Huazo',
+      features: [
+        {
+          title: 'Shumëllojshmëri e Madhe',
+          description: 'Zgjidh nga mijëra fustane për çdo rast'
+        },
+        {
+          title: 'Dorëzim i Shpejtë',
+          description: 'Marr fustanin tuaj në kohë rekord'
+        },
+        {
+          title: 'Modë e Qëndrueshme',
+          description: 'Kontribuoni në mjedisin më të mirë'
+        },
+        {
+          title: 'Pagesë e Sigurt',
+          description: 'Transaksione të sigurta dhe të lehta'
+        },
+        {
+          title: 'Cilësi Premium',
+          description: 'Vetëm fustane të zgjedhura me kujdes'
+        },
+        {
+          title: 'Kthim i Lehtë',
+          description: 'Proces i thjeshtë për kthimin e fustanit'
+        }
+      ]
+    },
+    auth: {
+      login: {
+        title: 'Hyr',
+        subtitle: 'Mirë se vini përsëri! Ju lutemi hyni në llogarinë tuaj.',
+        email: 'Email',
+        emailPlaceholder: 'email.juaj@example.com',
+        password: 'Fjalëkalimi',
+        passwordPlaceholder: 'Shkruani fjalëkalimin tuaj',
+        submitButton: 'Hyr',
+        loggingIn: 'Po hyni...',
+        noAccount: 'Nuk keni llogari?',
+        signUp: 'Regjistrohu',
+        errorRequired: 'Ju lutemi plotësoni të gjitha fushat'
+      },
+      signup: {
+        title: 'Krijo Llogari',
+        subtitle: 'Bashkohu me Huazo dhe fillo udhëtimin tënd të modës sot.',
+        firstName: 'Emri',
+        firstNamePlaceholder: 'Emri',
+        lastName: 'Mbiemri',
+        lastNamePlaceholder: 'Mbiemri',
+        email: 'Email',
+        emailPlaceholder: 'email.juaj@example.com',
+        password: 'Fjalëkalimi',
+        passwordPlaceholder: 'Të paktën 8 karaktere',
+        dateOfBirth: 'Data e Lindjes',
+        gender: 'Gjinia',
+        selectGender: 'Zgjidhni Gjininë',
+        male: 'Mashkull',
+        female: 'Femër',
+        other: 'Tjetër',
+        preferNotToSay: 'Preferoj të mos them',
+        phone: 'Telefoni',
+        phonePlaceholder: '+383 49 123 456',
+        optional: 'Opsionale',
+        accountType: 'Lloji i Llogarisë',
+        person: 'Person',
+        company: 'Kompani',
+        submitButton: 'Krijo Llogari',
+        creatingAccount: 'Po krijohet llogaria...',
+        hasAccount: 'Keni tashmë një llogari?',
+        login: 'Hyr',
+        errorRequired: 'Ju lutemi plotësoni të gjitha fushat e detyrueshme',
+        errorInvalidEmail: 'Ju lutemi shkruani një adresë email të vlefshme',
+        errorPasswordLength: 'Fjalëkalimi duhet të jetë të paktën 8 karaktere',
+        verificationTitle: 'Verifikoni Email-in Tuaj',
+        verificationSubtitle: 'Ne dërguam një kod verifikimi në',
+        verificationCode: 'Kodi i Verifikimit',
+        verificationCodePlaceholder: 'Shkruani kodin 6-shifror',
+        verificationHint: 'Ju lutemi kontrolloni email-in tuaj për kodin 6-shifror',
+        verifyButton: 'Verifiko',
+        verifying: 'Po verifikohet...',
+        didntReceiveCode: 'Nuk e morët kodin?',
+        resendCode: 'Dërgo Përsëri Kodin',
+        backToForm: '← Kthehu te Regjistrimi',
+        errorVerificationCode: 'Ju lutemi shkruani një kod verifikimi të vlefshëm 6-shifror'
+      }
+    },
+    addItem: {
+      title: 'Shto Artikull të Ri',
+      photos: 'Foto të Artikullit',
+      uploadPhotos: 'Ngarko Foto',
+      photosHint: 'Mund të ngarkoni foto të shumta',
+      itemName: 'Emri i Artikullit',
+      itemNamePlaceholder: 'Shkruani emrin e artikullit',
+      description: 'Përshkrimi',
+      descriptionPlaceholder: 'Përshkruani artikullin tuaj...',
+      pricing: 'Çmimi',
+      pricingPlaceholder: '0.00',
+      size: 'Madhësia',
+      sizePlaceholder: 'p.sh., S, M, L, XL',
+      brand: 'Marka',
+      brandPlaceholder: 'Shkruani emrin e markës',
+      optional: 'Opsionale',
+      condition: 'Gjendja',
+      selectCondition: 'Zgjidhni Gjendjen',
+      conditionNew: 'E Re',
+      conditionLikeNew: 'Si E Re',
+      conditionGood: 'E Mirë',
+      conditionFair: 'E Kënaqshme',
+      deposit: 'Depozita',
+      depositPlaceholder: '0.00',
+      cancel: 'Anulo',
+      submitButton: 'Shto Artikull',
+      submitting: 'Po shtohet artikulli...',
+      successMessage: 'Artikulli u shtua me sukses!',
+      errorRequired: 'Ju lutemi plotësoni të gjitha fushat e detyrueshme',
+      errorNoPhotos: 'Ju lutemi shtoni të paktën një foto',
+      errorInvalidPricing: 'Ju lutemi shkruani një çmim të vlefshëm',
+      errorInvalidDeposit: 'Ju lutemi shkruani një shumë depozite të vlefshme'
     }
   },
   en: {
@@ -253,8 +711,8 @@ export const translations: { [key: string]: Translations } = {
       chooseGrowth: 'Choose Growth',
       choosePro: 'Choose Pro',
       contactSales: 'Contact Sales',
-      visibilityBoosts: 'Huazo Visibility Boosts (Updated Recommended Pricing)',
-      freePeriodRules: 'Free Period Rules (for clarity)',
+      visibilityBoosts: 'Huazo Visibility Boosts',
+      freePeriodRules: 'Free Period Rules',
       boostType: 'Boost Type',
       updatedPrice: 'Updated Price (€)',
       duration: 'Duration',
@@ -377,10 +835,277 @@ export const translations: { [key: string]: Translations } = {
       title: 'Chat with us',
       subtitle: 'We typically reply within minutes',
       welcomeMessage: 'Hello! How can we help you today?',
-      instruction: 'Type your message below and click "Open WhatsApp". Your message will open in WhatsApp pre-filled - just click "Send" in WhatsApp to send it.',
+      instruction: 'Type your message below and we\'ll reply to you on WhatsApp.',
       placeholder: 'Type your message...',
-      send: 'Open WhatsApp',
-      openChat: 'Open chat'
+      send: 'Send',
+      openChat: 'Open chat',
+      sentConfirmation: 'Message sent! We\'ll reply to you on WhatsApp shortly.',
+      errorMessage: 'Sorry, there was an error sending your message. Please try again.',
+      sending: 'Sending...',
+      sent: 'Sent',
+      failed: 'Failed'
+    },
+    home: {
+      subtitle: 'Wear. Return. Repeat.',
+      title: 'HUAZO',
+      description: 'Your entire wardrobe in one app.',
+      downloadApp: 'Download App',
+      addItem: 'Add Item',
+      whyHuazo: 'Why Huazo?',
+      whyHuazoSubtitle: 'Transform your wardrobe into a source of income and find your style without spending too much',
+      benefits: {
+        earnFromWardrobe: {
+          title: 'Earn from Wardrobe',
+          text: 'Clothes you no longer use? Publish and earn money from your wardrobe.'
+        },
+        saveMoney: {
+          title: 'Save Money',
+          text: 'Don\'t spend hundreds on clothes you\'ll only wear once. Rent them and save up to 80%.'
+        },
+        forEveryEvent: {
+          title: 'For Every Event',
+          text: 'Find something perfect. For your special events'
+        },
+        sustainable: {
+          title: 'Sustainable Fashion',
+          text: 'Smart solution for the environment. Reuse clothes and contribute to a cleaner planet.'
+        },
+        endlessVariety: {
+          title: 'Endless Variety',
+          text: 'Access to thousands of items from boutiques and users. Find your style without limits.'
+        },
+        fastAndEasy: {
+          title: 'Fast and Easy',
+          text: 'Reserve and get clothes within hours. Simple and secure process.'
+        }
+      },
+      howItWorks: 'How It Works',
+      howItWorksDescription: 'Huazo is the ideal platform for renting and leasing clothes. Browse the collection, choose the items you like, and reserve for the day you need.',
+      steps: {
+        search: {
+          title: 'Search',
+          description: 'Enter size, color or city.'
+        },
+        discover: {
+          title: 'Discover',
+          description: 'Find the perfect dress from boutiques and users.'
+        },
+        contact: {
+          title: 'Contact & Rent',
+          description: 'Connect directly to rent'
+        }
+      }
+    },
+    about: {
+      heroTitle: 'About Huazo',
+      heroSubtitle: 'Revolutionizing fashion through sustainable clothing rental',
+      mission: {
+        title: 'Our Mission',
+        description: 'To revolutionize the way people think about fashion by making clothing rental accessible, sustainable, and affordable for everyone. We believe that everyone deserves to look great without the environmental and financial cost of fast fashion.'
+      },
+      vision: {
+        title: 'Our Vision',
+        description: 'To create a world where fashion is circular, sustainable, and accessible. We envision a future where renting clothes is as common as buying them, reducing waste and making high-quality fashion available to everyone.'
+      },
+      story: {
+        title: 'Our Story',
+        paragraphs: [
+          'Huazo was born from a simple observation: our closets are full of clothes we rarely wear, while others struggle to find affordable fashion options. We saw an opportunity to connect these two groups and create value for everyone.',
+          'Founded in 2024, Huazo started as a small platform connecting local fashion enthusiasts. Today, we have grown into a comprehensive rental marketplace serving thousands of users who share our vision of sustainable fashion.',
+          'Our team is passionate about making fashion more sustainable and accessible. We work tirelessly to improve our platform, expand our community, and make renting clothes as easy and enjoyable as possible.'
+        ]
+      },
+      values: {
+        title: 'Our Values',
+        values: [
+          {
+            title: 'Sustainability',
+            description: 'We are committed to reducing fashion waste and promoting a circular economy. Every rental extends the life of clothing and reduces environmental impact.'
+          },
+          {
+            title: 'Accessibility',
+            description: 'Fashion should be accessible to everyone. We provide affordable rental options that allow people to express their style without breaking the bank.'
+          },
+          {
+            title: 'Community',
+            description: 'We build connections between people who share a passion for fashion. Our platform brings together renters and owners in a supportive community.'
+          },
+          {
+            title: 'Quality',
+            description: 'We ensure all items on our platform meet high quality standards. Your satisfaction and safety are our top priorities.'
+          }
+        ]
+      },
+      cta: {
+        title: 'Join the Huazo Community',
+        description: 'Whether you want to rent amazing clothes or earn from your wardrobe, Huazo is here for you.',
+        getStarted: 'Get Started',
+        learnMore: 'Learn More'
+      }
+    },
+    contact: {
+      heroTitle: 'Get in Touch',
+      heroSubtitle: 'Have a question or want to learn more? We\'d love to hear from you.',
+      sendMessage: 'Send us a Message',
+      contactInfo: 'Contact Information',
+      followUs: 'Follow Us',
+      form: {
+        name: 'Name',
+        email: 'Email',
+        subject: 'Subject',
+        message: 'Message',
+        namePlaceholder: 'Your name',
+        emailPlaceholder: 'your.email@example.com',
+        subjectPlaceholder: 'What\'s this about?',
+        messagePlaceholder: 'Tell us more about your inquiry...',
+        sendButton: 'Send Message',
+        sentButton: 'Message Sent! ✓'
+      },
+      info: {
+        email: 'Email',
+        phone: 'Phone',
+        address: 'Address'
+      }
+    },
+    footer: {
+      slogan: 'We growing up your business with personal AI manager.',
+      company: 'Company',
+      resources: 'Resources',
+      legal: 'Legal',
+      allRightsReserved: 'All rights reserved.',
+      links: {
+        blog: 'Blog',
+        careers: 'Careers',
+        pricing: 'Pricing',
+        documentation: 'Documentation',
+        papers: 'Papers',
+        pressConferences: 'Press Conferences',
+        termsOfService: 'Terms of Service',
+        privacyPolicy: 'Privacy Policy',
+        cookiesPolicy: 'Cookies Policy',
+        dataProcessing: 'Data Processing'
+      }
+    },
+    aboutSection: {
+      mainTitle: 'Give Dresses a New Story!',
+      sectionTitle: 'About Us – Huazo',
+      features: [
+        {
+          title: 'Great Variety',
+          description: 'Choose from thousands of dresses for every occasion'
+        },
+        {
+          title: 'Fast Delivery',
+          description: 'Get your dress in record time'
+        },
+        {
+          title: 'Sustainable Fashion',
+          description: 'Contribute to a better environment'
+        },
+        {
+          title: 'Secure Payment',
+          description: 'Safe and easy transactions'
+        },
+        {
+          title: 'Premium Quality',
+          description: 'Only carefully selected dresses'
+        },
+        {
+          title: 'Easy Return',
+          description: 'Simple process for returning the dress'
+        }
+      ]
+    },
+    auth: {
+      login: {
+        title: 'Login',
+        subtitle: 'Welcome back! Please login to your account.',
+        email: 'Email',
+        emailPlaceholder: 'your.email@example.com',
+        password: 'Password',
+        passwordPlaceholder: 'Enter your password',
+        submitButton: 'Login',
+        loggingIn: 'Logging in...',
+        noAccount: "Don't have an account?",
+        signUp: 'Sign Up',
+        errorRequired: 'Please fill in all fields'
+      },
+      signup: {
+        title: 'Create Account',
+        subtitle: 'Join Huazo and start your fashion journey today.',
+        firstName: 'First Name',
+        firstNamePlaceholder: 'John',
+        lastName: 'Last Name',
+        lastNamePlaceholder: 'Doe',
+        email: 'Email',
+        emailPlaceholder: 'your.email@example.com',
+        password: 'Password',
+        passwordPlaceholder: 'At least 8 characters',
+        dateOfBirth: 'Date of Birth',
+        gender: 'Gender',
+        selectGender: 'Select Gender',
+        male: 'Male',
+        female: 'Female',
+        other: 'Other',
+        preferNotToSay: 'Prefer not to say',
+        phone: 'Phone',
+        phonePlaceholder: '+383 49 123 456',
+        optional: 'Optional',
+        accountType: 'Account Type',
+        person: 'Person',
+        company: 'Company',
+        submitButton: 'Create Account',
+        creatingAccount: 'Creating Account...',
+        hasAccount: 'Already have an account?',
+        login: 'Login',
+        errorRequired: 'Please fill in all required fields',
+        errorInvalidEmail: 'Please enter a valid email address',
+        errorPasswordLength: 'Password must be at least 8 characters',
+        verificationTitle: 'Verify Your Email',
+        verificationSubtitle: 'We sent a verification code to',
+        verificationCode: 'Verification Code',
+        verificationCodePlaceholder: 'Enter 6-digit code',
+        verificationHint: 'Please check your email for the 6-digit code',
+        verifyButton: 'Verify',
+        verifying: 'Verifying...',
+        didntReceiveCode: "Didn't receive the code?",
+        resendCode: 'Resend Code',
+        backToForm: '← Back to Sign Up',
+        errorVerificationCode: 'Please enter a valid 6-digit verification code'
+      }
+    },
+    addItem: {
+      title: 'Add New Item',
+      photos: 'Item Photos',
+      uploadPhotos: 'Upload Photos',
+      photosHint: 'You can upload multiple photos',
+      itemName: 'Item Name',
+      itemNamePlaceholder: 'Enter item name',
+      description: 'Description',
+      descriptionPlaceholder: 'Describe your item...',
+      pricing: 'Pricing',
+      pricingPlaceholder: '0.00',
+      size: 'Size',
+      sizePlaceholder: 'e.g., S, M, L, XL',
+      brand: 'Brand',
+      brandPlaceholder: 'Enter brand name',
+      optional: 'Optional',
+      condition: 'Condition',
+      selectCondition: 'Select Condition',
+      conditionNew: 'New',
+      conditionLikeNew: 'Like New',
+      conditionGood: 'Good',
+      conditionFair: 'Fair',
+      deposit: 'Deposit',
+      depositPlaceholder: '0.00',
+      cancel: 'Cancel',
+      submitButton: 'Add Item',
+      submitting: 'Adding Item...',
+      successMessage: 'Item added successfully!',
+      errorRequired: 'Please fill in all required fields',
+      errorNoPhotos: 'Please add at least one photo',
+      errorInvalidPricing: 'Please enter a valid price',
+      errorInvalidDeposit: 'Please enter a valid deposit amount'
     }
   }
 };

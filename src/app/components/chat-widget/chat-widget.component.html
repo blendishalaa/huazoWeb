@@ -34,11 +34,17 @@
     </div>
 
     <div class="chat-body">
-      <div class="chat-message chat-message-bot">
-        <p>{{ translations.chat?.welcomeMessage || 'Hello! How can we help you today?' }}</p>
-      </div>
-      <div class="chat-message chat-message-bot">
-        <p>{{ translations.chat?.instruction || 'Type your message below and we\'ll continue the conversation on WhatsApp.' }}</p>
+      <div 
+        *ngFor="let msg of messages" 
+        [class.chat-message-user]="msg.sender === 'user'"
+        [class.chat-message-bot]="msg.sender === 'bot'"
+        class="chat-message"
+        [class.sending]="msg.status === 'sending'"
+        [class.failed]="msg.status === 'failed'">
+        <p>{{ msg.text }}</p>
+        <span *ngIf="msg.sender === 'user' && msg.status === 'sending'" class="message-status">{{ translations.chat?.sending || 'Sending...' }}</span>
+        <span *ngIf="msg.sender === 'user' && msg.status === 'sent'" class="message-status sent">✓ {{ translations.chat?.sent || 'Sent' }}</span>
+        <span *ngIf="msg.sender === 'user' && msg.status === 'failed'" class="message-status failed">✗ {{ translations.chat?.failed || 'Failed' }}</span>
       </div>
     </div>
 
@@ -53,7 +59,7 @@
       <button 
         class="chat-send" 
         (click)="sendMessage()"
-        [disabled]="!message.trim()"
+        [disabled]="!message.trim() || isSending"
         [attr.aria-label]="translations.chat?.send || 'Send message'">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="22" y1="2" x2="11" y2="13"></line>

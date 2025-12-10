@@ -1,83 +1,95 @@
 <div class="home-container">
   <div class="top-content">
-    <h1 class="main-title">{{ title }}</h1>
-    <p class="description">{{ description }}</p>
+    <h1 class="main-title">{{ translations.home.title }}</h1>
+    <p class="description">{{ translations.home.description }}</p>
     <div class="buttons-container">
-      <button class="btn btn-primary">Shkarko aplikacionin</button>
+      <button class="btn btn-primary">
+        {{ translations.home.downloadApp }}
+      </button>
+      <button class="btn btn-secondary" (click)="openAddItemModal()">
+        {{ translations.home.addItem || "Add Item" }}
+      </button>
     </div>
   </div>
 
   <div class="why-huazo-section">
-    <h2 class="section-title">Pse Huazo?</h2>
+    <h2 class="section-title">{{ translations.home.whyHuazo }}</h2>
     <p class="section-subtitle">
-      Transformo garderobën tënde në një burim të ardhurash dhe gjej stilin tënd
-      pa shpenzuar shumë
+      {{ translations.home.whyHuazoSubtitle }}
     </p>
 
     <div class="benefits-grid">
       <div class="benefit-card">
-        <h3 class="benefit-title">Fito nga Garderoba</h3>
+        <h3 class="benefit-title">
+          {{ translations.home.benefits.earnFromWardrobe.title }}
+        </h3>
         <p class="benefit-text">
-          Rrobat që nuk i përdor më? Publikojë dhe fito para nga garderoba jote.
+          {{ translations.home.benefits.earnFromWardrobe.text }}
         </p>
       </div>
 
       <div class="benefit-card">
-        <h3 class="benefit-title">Kursim Parash</h3>
+        <h3 class="benefit-title">
+          {{ translations.home.benefits.saveMoney.title }}
+        </h3>
         <p class="benefit-text">
-          Mos shpenzo qindra për rroba që do t'i vish vetëm një herë. Huazoje
-          dhe kurse deri në 80%.
+          {{ translations.home.benefits.saveMoney.text }}
         </p>
       </div>
 
       <div class="benefit-card">
-        <h3 class="benefit-title">Për Çdo Event</h3>
+        <h3 class="benefit-title">
+          {{ translations.home.benefits.forEveryEvent.title }}
+        </h3>
         <p class="benefit-text">
-          Gjej diçka të përsosur. Për evente tuaja speciale
+          {{ translations.home.benefits.forEveryEvent.text }}
         </p>
       </div>
 
       <div class="benefit-card">
-        <h3 class="benefit-title">Modë e Qëndrueshme</h3>
+        <h3 class="benefit-title">
+          {{ translations.home.benefits.sustainable.title }}
+        </h3>
         <p class="benefit-text">
-          Zgjidhje e zgjuar për mjedisin. Rishpërdor rrobat dhe kontribuo për
-          një planet më të pastër.
+          {{ translations.home.benefits.sustainable.text }}
         </p>
       </div>
 
       <div class="benefit-card">
-        <h3 class="benefit-title">Varietet i Pafund</h3>
+        <h3 class="benefit-title">
+          {{ translations.home.benefits.endlessVariety.title }}
+        </h3>
         <p class="benefit-text">
-          Qasje në mijëra artikuj nga butiqet dhe përdoruesit. Gjej stilin tënd
-          pa kufij.
+          {{ translations.home.benefits.endlessVariety.text }}
         </p>
       </div>
 
       <div class="benefit-card">
-        <h3 class="benefit-title">I Shpejtë dhe i Lehtë</h3>
+        <h3 class="benefit-title">
+          {{ translations.home.benefits.fastAndEasy.title }}
+        </h3>
         <p class="benefit-text">
-          Rezervo dhe merr rrobat brenda pak orësh. Proces i thjeshtë dhe i
-          sigurt.
+          {{ translations.home.benefits.fastAndEasy.text }}
         </p>
       </div>
     </div>
   </div>
 
   <div class="how-it-works-section">
-    <h2 class="section-title">Si Funksionon</h2>
+    <h2 class="section-title">{{ translations.home.howItWorks }}</h2>
     <p class="section-description">
-      Huazo është platforma ideale për të huazuar dhe marrë me qira rroba.
-      Shfletoni koleksionin, zgjidhni artikujt që ju pëlqejnë, dhe rezervoni për
-      ditën që ju nevojitet.
+      {{ translations.home.howItWorksDescription }}
     </p>
 
     <div class="features-container">
       <div class="feature-item">
         <div class="feature-content">
           <div class="feature-number">1</div>
-          <h3 class="feature-title">Kërko</h3>
+          <h3 class="feature-title">
+            {{ translations.home.steps.search.title }}
+          </h3>
           <p class="feature-description">
-            Shkruaj madhësinë, ngjyrën ose qytetin.
+            {{ translations.home.steps.search.description }}
           </p>
         </div>
         <div class="feature-screen">
@@ -88,9 +100,11 @@
       <div class="feature-item feature-reverse">
         <div class="feature-content">
           <div class="feature-number">2</div>
-          <h3 class="feature-title">Zbulo</h3>
+          <h3 class="feature-title">
+            {{ translations.home.steps.discover.title }}
+          </h3>
           <p class="feature-description">
-            Gjej fustanin perfekt nga butiqet dhe përdoruesit.
+            {{ translations.home.steps.discover.description }}
           </p>
         </div>
         <div class="feature-screen">
@@ -105,8 +119,12 @@
       <div class="feature-item">
         <div class="feature-content">
           <div class="feature-number">3</div>
-          <h3 class="feature-title">Kontakto & Huazo</h3>
-          <p class="feature-description">Lidhu direkt për ta marrë me qira</p>
+          <h3 class="feature-title">
+            {{ translations.home.steps.contact.title }}
+          </h3>
+          <p class="feature-description">
+            {{ translations.home.steps.contact.description }}
+          </p>
         </div>
         <div class="feature-screen">
           <img [src]="screen2Path" alt="Contact Feature" class="screen-image" />
@@ -115,3 +133,8 @@
     </div>
   </div>
 </div>
+
+<app-add-item
+  [isOpen]="isAddItemModalOpen"
+  (close)="closeAddItemModal()"
+></app-add-item>

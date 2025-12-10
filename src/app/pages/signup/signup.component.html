@@ -1,0 +1,210 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <!-- Signup Form Step -->
+    <div *ngIf="currentStep === 'form'">
+      <h1 class="auth-title">{{ translations.auth?.signup?.title || 'Create Account' }}</h1>
+      <p class="auth-subtitle">{{ translations.auth?.signup?.subtitle || 'Join Huazo and start your fashion journey today.' }}</p>
+
+      <form (ngSubmit)="onSubmitForm()" #signupForm="ngForm" class="auth-form">
+        <div class="form-row">
+          <div class="form-group form-group-half">
+            <label for="firstName" class="form-label">{{ translations.auth?.signup?.firstName || 'First Name' }} *</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              [(ngModel)]="signupData.firstName"
+              required
+              class="form-input"
+              [placeholder]="translations.auth?.signup?.firstNamePlaceholder || 'John'"
+            />
+          </div>
+
+          <div class="form-group form-group-half">
+            <label for="lastName" class="form-label">{{ translations.auth?.signup?.lastName || 'Last Name' }} *</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              [(ngModel)]="signupData.lastName"
+              required
+              class="form-input"
+              [placeholder]="translations.auth?.signup?.lastNamePlaceholder || 'Doe'"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">{{ translations.auth?.signup?.email || 'Email' }} *</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            [(ngModel)]="signupData.email"
+            required
+            class="form-input"
+            [placeholder]="translations.auth?.signup?.emailPlaceholder || 'your.email@example.com'"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">{{ translations.auth?.signup?.password || 'Password' }} *</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            [(ngModel)]="signupData.password"
+            required
+            minlength="8"
+            class="form-input"
+            [placeholder]="translations.auth?.signup?.passwordPlaceholder || 'At least 8 characters'"
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group form-group-half">
+            <label for="dateOfBirth" class="form-label">{{ translations.auth?.signup?.dateOfBirth || 'Date of Birth' }} *</label>
+            <input
+              type="date"
+              id="dateOfBirth"
+              name="dateOfBirth"
+              [(ngModel)]="signupData.dateOfBirth"
+              required
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group form-group-half">
+            <label for="gender" class="form-label">{{ translations.auth?.signup?.gender || 'Gender' }} *</label>
+            <select
+              id="gender"
+              name="gender"
+              [(ngModel)]="signupData.gender"
+              required
+              class="form-input"
+            >
+              <option value="">{{ translations.auth?.signup?.selectGender || 'Select Gender' }}</option>
+              <option value="male">{{ translations.auth?.signup?.male || 'Male' }}</option>
+              <option value="female">{{ translations.auth?.signup?.female || 'Female' }}</option>
+              <option value="other">{{ translations.auth?.signup?.other || 'Other' }}</option>
+              <option value="prefer-not-to-say">{{ translations.auth?.signup?.preferNotToSay || 'Prefer not to say' }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone" class="form-label">{{ translations.auth?.signup?.phone || 'Phone' }} ({{ translations.auth?.signup?.optional || 'Optional' }})</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            [(ngModel)]="signupData.phone"
+            class="form-input"
+            [placeholder]="translations.auth?.signup?.phonePlaceholder || '+383 49 123 456'"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">{{ translations.auth?.signup?.accountType || 'Account Type' }} *</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input
+                type="radio"
+                name="accountType"
+                value="person"
+                [(ngModel)]="signupData.accountType"
+                required
+                class="radio-input"
+              />
+              <span class="radio-text">{{ translations.auth?.signup?.person || 'Person' }}</span>
+            </label>
+            <label class="radio-label">
+              <input
+                type="radio"
+                name="accountType"
+                value="company"
+                [(ngModel)]="signupData.accountType"
+                required
+                class="radio-input"
+              />
+              <span class="radio-text">{{ translations.auth?.signup?.company || 'Company' }}</span>
+            </label>
+          </div>
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="!signupForm.valid || submitted"
+          class="submit-btn"
+        >
+          <span *ngIf="!submitted">{{ translations.auth?.signup?.submitButton || 'Create Account' }}</span>
+          <span *ngIf="submitted">{{ translations.auth?.signup?.creatingAccount || 'Creating Account...' }}</span>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        <p class="auth-footer-text">
+          {{ translations.auth?.signup?.hasAccount || 'Already have an account?' }}
+          <a routerLink="/login" class="auth-link">{{ translations.auth?.signup?.login || 'Login' }}</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Verification Step -->
+    <div *ngIf="currentStep === 'verification'">
+      <h1 class="auth-title">{{ translations.auth?.signup?.verificationTitle || 'Verify Your Email' }}</h1>
+      <p class="auth-subtitle">
+        {{ translations.auth?.signup?.verificationSubtitle || 'We sent a verification code to' }} 
+        <strong>{{ signupData.email }}</strong>
+      </p>
+
+      <form (ngSubmit)="onSubmitVerification()" #verificationForm="ngForm" class="auth-form">
+        <div class="form-group">
+          <label for="verificationCode" class="form-label">{{ translations.auth?.signup?.verificationCode || 'Verification Code' }} *</label>
+          <input
+            type="text"
+            id="verificationCode"
+            name="verificationCode"
+            [(ngModel)]="verificationCode"
+            required
+            maxlength="6"
+            pattern="[0-9]{6}"
+            class="form-input verification-input"
+            [placeholder]="translations.auth?.signup?.verificationCodePlaceholder || 'Enter 6-digit code'"
+          />
+          <p class="form-hint">{{ translations.auth?.signup?.verificationHint || 'Please check your email for the 6-digit code' }}</p>
+        </div>
+
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="!verificationForm.valid || submitted || verificationCode.length !== 6"
+          class="submit-btn"
+        >
+          <span *ngIf="!submitted">{{ translations.auth?.signup?.verifyButton || 'Verify' }}</span>
+          <span *ngIf="submitted">{{ translations.auth?.signup?.verifying || 'Verifying...' }}</span>
+        </button>
+
+        <div class="verification-footer">
+          <p class="verification-text">
+            {{ translations.auth?.signup?.didntReceiveCode || "Didn't receive the code?" }}
+            <button type="button" (click)="resendVerificationCode()" class="resend-link" [disabled]="!verificationCodeSent">
+              {{ translations.auth?.signup?.resendCode || 'Resend Code' }}
+            </button>
+          </p>
+          <button type="button" (click)="goBackToForm()" class="back-link">
+            {{ translations.auth?.signup?.backToForm || '← Back to Sign Up' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

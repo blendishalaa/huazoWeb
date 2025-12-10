@@ -1,29 +1,29 @@
 <div class="about-container">
   <!-- Hero Section -->
   <div class="hero-section">
-    <h1 class="hero-title">About Huazo</h1>
+    <h1 class="hero-title">{{ translations.about.heroTitle }}</h1>
     <p class="hero-subtitle">
-      Revolutionizing fashion through sustainable clothing rental
+      {{ translations.about.heroSubtitle }}
     </p>
   </div>
 
   <!-- Mission & Vision Section -->
   <div class="mission-vision-section">
     <div class="mission-card">
-      <h2 class="card-title">{{ mission.title }}</h2>
-      <p class="card-description">{{ mission.description }}</p>
+      <h2 class="card-title">{{ translations.about.mission.title }}</h2>
+      <p class="card-description">{{ translations.about.mission.description }}</p>
     </div>
     <div class="vision-card">
-      <h2 class="card-title">{{ vision.title }}</h2>
-      <p class="card-description">{{ vision.description }}</p>
+      <h2 class="card-title">{{ translations.about.vision.title }}</h2>
+      <p class="card-description">{{ translations.about.vision.description }}</p>
     </div>
   </div>
 
   <!-- Story Section -->
   <div class="story-section">
-    <h2 class="section-title">{{ story.title }}</h2>
+    <h2 class="section-title">{{ translations.about.story.title }}</h2>
     <div class="story-content">
-      <p *ngFor="let paragraph of story.paragraphs" class="story-paragraph">
+      <p *ngFor="let paragraph of translations.about.story.paragraphs" class="story-paragraph">
         {{ paragraph }}
       </p>
     </div>
@@ -31,9 +31,9 @@
 
   <!-- Values Section -->
   <div class="values-section">
-    <h2 class="section-title">Our Values</h2>
+    <h2 class="section-title">{{ translations.about.values.title }}</h2>
     <div class="values-grid">
-      <div *ngFor="let value of values" class="value-card">
+      <div *ngFor="let value of translations.about.values.values" class="value-card">
         <h3 class="value-title">{{ value.title }}</h3>
         <p class="value-description">{{ value.description }}</p>
       </div>
@@ -42,13 +42,13 @@
 
   <!-- CTA Section -->
   <div class="cta-section">
-    <h2 class="cta-title">Join the Huazo Community</h2>
+    <h2 class="cta-title">{{ translations.about.cta.title }}</h2>
     <p class="cta-description">
-      Whether you want to rent amazing clothes or earn from your wardrobe, Huazo is here for you.
+      {{ translations.about.cta.description }}
     </p>
     <div class="cta-buttons">
-      <button class="btn btn-primary">Get Started</button>
-      <button class="btn btn-secondary">Learn More</button>
+      <button class="btn btn-primary">{{ translations.about.cta.getStarted }}</button>
+      <button class="btn btn-secondary">{{ translations.about.cta.learnMore }}</button>
     </div>
   </div>
 </div>

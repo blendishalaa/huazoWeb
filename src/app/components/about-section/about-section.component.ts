@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from '../../services/language.service';
+import { translations, Translations } from '../../services/translations';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-about-section',
@@ -8,41 +11,36 @@ import { CommonModule } from '@angular/common';
   templateUrl: './about-section.component.html',
   styleUrl: './about-section.component.css'
 })
-export class AboutSectionComponent {
-  mainTitle = 'Jepu Fustaneve Një Histori të Re!';
-  sectionTitle = 'Rreth Nesh – Huazo';
+export class AboutSectionComponent implements OnInit, OnDestroy {
+  currentLanguage: 'sq' | 'en' = 'sq';
+  translations: Translations = translations['sq'];
+  private languageSubscription?: Subscription;
   
-  features = [
-    {
-      iconType: 'dress',
-      title: 'Shumëllojshmëri e Madhe',
-      description: 'Zgjidh nga mijëra fustane për çdo rast'
-    },
-    {
-      iconType: 'delivery',
-      title: 'Dorëzim i Shpejtë',
-      description: 'Marr fustanin tuaj në kohë rekord'
-    },
-    {
-      iconType: 'sustainable',
-      title: 'Modë e Qëndrueshme',
-      description: 'Kontribuoni në mjedisin më të mirë'
-    },
-    {
-      iconType: 'payment',
-      title: 'Pagesë e Sigurt',
-      description: 'Transaksione të sigurta dhe të lehta'
-    },
-    {
-      iconType: 'quality',
-      title: 'Cilësi Premium',
-      description: 'Vetëm fustane të zgjedhura me kujdes'
-    },
-    {
-      iconType: 'return',
-      title: 'Kthim i Lehtë',
-      description: 'Proces i thjeshtë për kthimin e fustanit'
-    }
-  ];
+  features: Array<{ iconType: string; title: string; description: string }> = [];
+
+  constructor(private languageService: LanguageService) {}
+
+  ngOnInit() {
+    this.currentLanguage = this.languageService.getCurrentLanguage();
+    this.updateTranslations();
+    
+    this.languageSubscription = this.languageService.currentLanguage$.subscribe(lang => {
+      this.currentLanguage = lang;
+      this.updateTranslations();
+    });
+  }
+
+  ngOnDestroy() {
+    this.languageSubscription?.unsubscribe();
+  }
+
+  updateTranslations() {
+    this.translations = translations[this.currentLanguage];
+    this.features = this.translations.aboutSection.features.map((feature, index) => ({
+      iconType: ['dress', 'delivery', 'sustainable', 'payment', 'quality', 'return'][index],
+      title: feature.title,
+      description: feature.description
+    }));
+  }
 }
 

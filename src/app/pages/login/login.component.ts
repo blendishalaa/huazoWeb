@@ -1,43 +1,35 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
 import { translations, Translations } from '../../services/translations';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  imports: [CommonModule, FormsModule, RouterModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
-export class ContactComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit, OnDestroy {
   currentLanguage: 'sq' | 'en' = 'sq';
   translations: Translations = translations['sq'];
   private languageSubscription?: Subscription;
 
-  contactInfo = {
-    email: 'info@huazo.com',
-    phone: '+383 49 855 484',
-    address: 'Prishtinë, Kosovë'
-  };
-
-  socialLinks = [
-    { name: 'Instagram', icon: 'instagram', url: 'https://www.instagram.com/huazoapp/' },
-    { name: 'TikTok', icon: 'tiktok', url: 'https://www.tiktok.com/@huazoapp' }
-  ];
-
-  formData = {
-    name: '',
+  loginData = {
     email: '',
-    subject: '',
-    message: ''
+    password: ''
   };
 
   submitted = false;
+  errorMessage = '';
 
-  constructor(private languageService: LanguageService) {}
+  constructor(
+    private languageService: LanguageService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.currentLanguage = this.languageService.getCurrentLanguage();
@@ -58,20 +50,22 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    // Handle form submission here
-    console.log('Form submitted:', this.formData);
     this.submitted = true;
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      this.formData = {
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      };
+    this.errorMessage = '';
+
+    if (!this.loginData.email || !this.loginData.password) {
+      this.errorMessage = this.translations.auth?.login?.errorRequired || 'Please fill in all fields';
       this.submitted = false;
-    }, 3000);
+      return;
+    }
+
+    // TODO: Implement actual login logic
+    console.log('Login attempt:', this.loginData);
+    
+    // Simulate login - redirect to home on success
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 1000);
   }
 }
 

@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   updateTranslations() {
     this.translations = translations[this.currentLanguage];
     this.navLinks = [
-      { label: this.translations.header.home, path: '/' },
+      { label: this.translations.header.home, path: '/home' },
       { label: this.translations.header.pricing, path: '/pricing' },
       { label: this.translations.header.about, path: '/about' },
       { label: this.translations.header.contact, path: '/contact' }

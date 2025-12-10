@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LanguageService } from '../../services/language.service';
+import { ChatService, ChatMessage } from '../../services/chat.service';
 import { translations, Translations } from '../../services/translations';
 import { Subscription } from 'rxjs';
 
@@ -18,20 +19,44 @@ export class ChatWidgetComponent implements OnInit, OnDestroy {
   showWidget = false;
   currentLanguage: 'sq' | 'en' = 'sq';
   translations: Translations = translations['sq'];
+  messages: ChatMessage[] = [];
+  isSending = false;
   private languageSubscription?: Subscription;
   private showTimeout?: any;
 
   // WhatsApp number (country code + number, no + sign)
   whatsappNumber = '38349855484';
 
-  constructor(private languageService: LanguageService) {
+  constructor(
+    private languageService: LanguageService,
+    private chatService: ChatService
+  ) {
     this.currentLanguage = this.languageService.getCurrentLanguage();
     this.updateTranslations();
+    this.initializeMessages();
     
     this.languageSubscription = this.languageService.currentLanguage$.subscribe(lang => {
       this.currentLanguage = lang;
       this.updateTranslations();
     });
+  }
+
+  initializeMessages() {
+    // Add welcome messages
+    this.messages = [
+      {
+        id: '1',
+        text: this.translations.chat?.welcomeMessage || 'Hello! How can we help you today?',
+        sender: 'bot',
+        timestamp: new Date()
+      },
+      {
+        id: '2',
+        text: this.translations.chat?.instruction || 'Type your message below and we\'ll get back to you on WhatsApp.',
+        sender: 'bot',
+        timestamp: new Date()
+      }
+    ];
   }
 
   ngOnInit() {
@@ -50,57 +75,98 @@ export class ChatWidgetComponent implements OnInit, OnDestroy {
 
   updateTranslations() {
     this.translations = translations[this.currentLanguage];
+    // Update bot messages if they exist
+    if (this.messages.length >= 2) {
+      this.messages[0].text = this.translations.chat?.welcomeMessage || 'Hello! How can we help you today?';
+      this.messages[1].text = this.translations.chat?.instruction || 'Type your message below and we\'ll get back to you on WhatsApp.';
+    }
   }
 
   toggleChat() {
     this.isOpen = !this.isOpen;
+    if (this.isOpen) {
+      // Scroll to bottom when opening
+      setTimeout(() => this.scrollToBottom(), 100);
+    }
   }
 
   closeChat() {
     this.isOpen = false;
   }
 
+  scrollToBottom() {
+    const chatBody = document.querySelector('.chat-body');
+    if (chatBody) {
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+  }
+
   sendMessage() {
-    if (this.message.trim()) {
-      // Clean the message
+    if (this.message.trim() && !this.isSending) {
       const cleanMessage = this.message.trim();
       
-      // Encode the message for URL - encodeURIComponent handles all special characters
-      const encodedMessage = encodeURIComponent(cleanMessage);
+      // Add user message to chat
+      const userMessage: ChatMessage = {
+        id: Date.now().toString(),
+        text: cleanMessage,
+        sender: 'user',
+        timestamp: new Date(),
+        status: 'sending'
+      };
       
-      // Create WhatsApp URL - format: https://wa.me/PHONENUMBER?text=MESSAGE
-      const whatsappUrl = `https://wa.me/${this.whatsappNumber}?text=${encodedMessage}`;
-      
-      // Check if mobile device
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      
-      try {
-        if (isMobile) {
-          // For mobile, open WhatsApp app directly
-          // This will open the app if installed, or web version if not
-          window.location.href = whatsappUrl;
-        } else {
-          // For desktop, open WhatsApp Web in new tab
-          const newWindow = window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-          
-          // If popup blocked, try direct navigation
-          if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-            window.location.href = whatsappUrl;
-          }
-        }
-      } catch (error) {
-        console.error('Error opening WhatsApp:', error);
-        // Fallback: try direct navigation
-        window.location.href = whatsappUrl;
-      }
-      
-      // Clear the message
+      this.messages.push(userMessage);
       this.message = '';
+      this.isSending = true;
       
-      // Close the chat widget after opening WhatsApp
-      setTimeout(() => {
-        this.closeChat();
-      }, 500);
+      // Scroll to bottom
+      setTimeout(() => this.scrollToBottom(), 100);
+      
+      // Send message to backend API
+      this.chatService.sendMessage(cleanMessage, this.whatsappNumber).subscribe({
+        next: (response) => {
+          userMessage.status = response.success !== false ? 'sent' : 'failed';
+          this.isSending = false;
+          
+          // Add bot confirmation message
+          if (response.success !== false) {
+            setTimeout(() => {
+              const botMessage: ChatMessage = {
+                id: (Date.now() + 1).toString(),
+                text: this.translations.chat?.sentConfirmation || 'Message sent! We\'ll reply to you on WhatsApp shortly.',
+                sender: 'bot',
+                timestamp: new Date()
+              };
+              this.messages.push(botMessage);
+              setTimeout(() => this.scrollToBottom(), 100);
+            }, 500);
+          } else {
+            // Show error message
+            const errorMessage: ChatMessage = {
+              id: (Date.now() + 1).toString(),
+              text: this.translations.chat?.errorMessage || 'Sorry, there was an error sending your message. Please try again.',
+              sender: 'bot',
+              timestamp: new Date()
+            };
+            this.messages.push(errorMessage);
+            setTimeout(() => this.scrollToBottom(), 100);
+          }
+        },
+        error: (error) => {
+          console.error('Error sending message:', error);
+          userMessage.status = 'failed';
+          this.isSending = false;
+          
+          // Show error message
+          const errorMessage: ChatMessage = {
+            id: (Date.now() + 1).toString(),
+            text: this.translations.chat?.errorMessage || 'Sorry, there was an error sending your message. Please try again.',
+            sender: 'bot',
+            timestamp: new Date()
+          };
+          this.messages.push(errorMessage);
+          setTimeout(() => this.scrollToBottom(), 100);
+        }
+      });
     }
   }
 
