@@ -1,0 +1,104 @@
+.legal-container {
+  min-height: 100vh;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 110px 40px 80px;
+}
+
+.hero {
+  text-align: center;
+  max-width: 920px;
+  margin: 0 auto 48px;
+  padding: 0 16px;
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 4.2vw, 4.2rem);
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 10px 0;
+}
+
+.hero-updated {
+  font-size: 0.95rem;
+  color: rgba(57, 255, 20, 0.7);
+  margin: 0;
+}
+
+.section-grid {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  gap: 24px;
+}
+
+.legal-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(57, 255, 20, 0.12);
+  border-radius: 20px;
+  padding: 24px 28px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+}
+
+.section-paragraph {
+  margin: 0 0 12px 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+}
+
+.section-paragraph:last-of-type {
+  margin-bottom: 0;
+}
+
+.section-list {
+  margin: 12px 0 0 18px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.section-list li {
+  margin-bottom: 6px;
+}
+
+.contact-card {
+  border-color: rgba(57, 255, 20, 0.2);
+  background: rgba(57, 255, 20, 0.04);
+}
+
+.contact-line {
+  margin: 8px 0 0 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.contact-link {
+  color: #39ff14;
+  text-decoration: none;
+  margin-left: 6px;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .legal-container {
+    padding: 90px 20px 60px;
+  }
+
+  .legal-card {
+    padding: 20px;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+  }
+}

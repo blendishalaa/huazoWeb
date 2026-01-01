@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { LanguageService } from '../../services/language.service';
 import { translations, Translations } from '../../services/translations';
 import { Subscription } from 'rxjs';
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   currentLanguage: 'sq' | 'en' = 'sq';
   translations: Translations = translations['sq'];
   private languageSubscription?: Subscription;
+  isSubmitting = false;
 
   loginData = {
     email: '',
@@ -27,8 +28,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   errorMessage = '';
 
   constructor(
-    private languageService: LanguageService,
-    private router: Router
+    private languageService: LanguageService
   ) {}
 
   ngOnInit() {
@@ -52,22 +52,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.submitted = true;
     this.errorMessage = '';
+    this.isSubmitting = true;
 
     if (!this.loginData.email || !this.loginData.password) {
       this.errorMessage = this.translations.auth?.login?.errorRequired || 'Please fill in all fields';
       this.submitted = false;
+      this.isSubmitting = false;
       return;
     }
 
-    // TODO: Implement actual login logic
-    console.log('Login attempt:', this.loginData);
-    
-    // Simulate login - redirect to home on success
-    setTimeout(() => {
-      this.router.navigate(['/']);
-    }, 1000);
+    this.errorMessage = this.translations.auth?.login?.webOnly || 'Login is available in the Huazo mobile app.';
+    this.submitted = false;
+    this.isSubmitting = false;
   }
 }
-
-
-

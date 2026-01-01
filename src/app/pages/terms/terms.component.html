@@ -1,0 +1,30 @@
+<div class="legal-container">
+  <div class="hero">
+    <h1 class="hero-title">{{ translations.terms.title }}</h1>
+    <p class="hero-subtitle">{{ translations.terms.subtitle }}</p>
+    <p class="hero-updated">{{ translations.terms.updatedLabel }} {{ translations.terms.updatedDate }}</p>
+  </div>
+
+  <div class="section-grid">
+    <section *ngFor="let section of translations.terms.sections" class="legal-card">
+      <h2 class="section-title">{{ section.title }}</h2>
+      <p *ngFor="let paragraph of section.paragraphs" class="section-paragraph">
+        {{ paragraph }}
+      </p>
+      <ul *ngIf="section.bullets?.length" class="section-list">
+        <li *ngFor="let bullet of section.bullets">{{ bullet }}</li>
+      </ul>
+    </section>
+
+    <section class="legal-card contact-card">
+      <h2 class="section-title">{{ translations.terms.contact.title }}</h2>
+      <p class="section-paragraph">{{ translations.terms.contact.body }}</p>
+      <p class="contact-line">
+        {{ translations.terms.contact.emailLabel }}
+        <a class="contact-link" [href]="'mailto:' + translations.terms.contact.email">
+          {{ translations.terms.contact.email }}
+        </a>
+      </p>
+    </section>
+  </div>
+</div>

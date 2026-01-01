@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { AboutSectionComponent } from "../../components/about-section/about-section.component";
-import { AddItemComponent } from "../../components/add-item/add-item.component";
 import { LanguageService } from "../../services/language.service";
 import { translations, Translations } from "../../services/translations";
 import { Subscription } from "rxjs";
@@ -9,7 +8,7 @@ import { Subscription } from "rxjs";
 @Component({
   selector: "app-home",
   standalone: true,
-  imports: [CommonModule, AboutSectionComponent, AddItemComponent],
+  imports: [CommonModule, AboutSectionComponent],
   templateUrl: "./home.component.html",
   styleUrl: "./home.component.css",
 })
@@ -22,8 +21,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   screen1Path = "assets/images/screen1.jpg";
   screen2Path = "assets/images/screen2.jpg";
   
-  isAddItemModalOpen = false;
-
   constructor(private languageService: LanguageService) {}
 
   ngOnInit() {
@@ -44,11 +41,5 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.translations = translations[this.currentLanguage];
   }
 
-  openAddItemModal() {
-    this.isAddItemModalOpen = true;
-  }
-
-  closeAddItemModal() {
-    this.isAddItemModalOpen = false;
-  }
+  
 }

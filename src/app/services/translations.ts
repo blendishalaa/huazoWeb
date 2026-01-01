@@ -185,6 +185,44 @@ export interface Translations {
       address: string;
     };
   };
+
+  // Privacy Policy
+  privacy: {
+    title: string;
+    subtitle: string;
+    updatedLabel: string;
+    updatedDate: string;
+    sections: Array<{
+      title: string;
+      paragraphs: string[];
+      bullets?: string[];
+    }>;
+    contact: {
+      title: string;
+      body: string;
+      emailLabel: string;
+      email: string;
+    };
+  };
+
+  // Terms of Service
+  terms: {
+    title: string;
+    subtitle: string;
+    updatedLabel: string;
+    updatedDate: string;
+    sections: Array<{
+      title: string;
+      paragraphs: string[];
+      bullets?: string[];
+    }>;
+    contact: {
+      title: string;
+      body: string;
+      emailLabel: string;
+      email: string;
+    };
+  };
   
   // Footer
   footer: {
@@ -192,6 +230,8 @@ export interface Translations {
     company: string;
     resources: string;
     legal: string;
+    contactLabel: string;
+    contactEmail: string;
     allRightsReserved: string;
     links: {
       blog: string;
@@ -228,6 +268,7 @@ export interface Translations {
       noAccount: string;
       signUp: string;
       errorRequired: string;
+      webOnly: string;
     };
     signup: {
       title: string;
@@ -551,11 +592,167 @@ export const translations: { [key: string]: Translations } = {
         address: 'Adresa'
       }
     },
+    privacy: {
+      title: 'Politika e Privatësisë',
+      subtitle: 'Ne respektojmë privatësinë tuaj dhe shpjegojmë si i mbledhim dhe i përdorim të dhënat në Huazo.',
+      updatedLabel: 'Përditësuar më',
+      updatedDate: '30 Dhjetor 2025',
+      sections: [
+        {
+          title: 'Të dhënat që mbledhim',
+          paragraphs: [
+            'Kur krijoni një llogari ose përdorni Huazo, ne mbledhim kategori të dhënash që na ndihmojnë të ofrojmë shërbimin.'
+          ],
+          bullets: [
+            'Informacion bazik i llogarisë dhe profilit',
+            'Përmbajtja dhe listimet që publikoni',
+            'Komunikimet dhe kërkesat për mbështetje',
+            'Të dhëna përdorimi dhe pajisjeje',
+            'Ngjarje analitike dhe ndërveprime në platformë',
+            'Vendndodhja që jepni (opsionale)'
+          ]
+        },
+        {
+          title: 'Si i përdorim të dhënat',
+          paragraphs: [
+            'I përdorim të dhënat për të ofruar, personalizuar dhe përmirësuar platformën Huazo.'
+          ],
+          bullets: [
+            'Të krijojmë dhe menaxhojmë llogarinë tuaj',
+            'Të përpunojmë rezervime dhe transaksione',
+            'Të komunikojmë me ju për verifikime dhe njoftime',
+            'Të personalizojmë përmbajtjen dhe rekomandimet',
+            'Të ruajmë sigurinë dhe të parandalojmë abuzimet',
+            'Të masim përdorimin dhe të përmirësojmë shërbimin'
+          ]
+        },
+        {
+          title: 'Pagesat dhe të dhënat financiare',
+          paragraphs: [
+            'Pagesat përpunohen nga Stripe. Ne nuk ruajmë numrat e kartave tuaja.'
+          ],
+          bullets: [
+            'Stripe trajton të dhënat e pagesave në mënyrë të sigurt',
+            'Ne marrim vetëm informacionin e nevojshëm për konfirmim dhe historik transaksionesh'
+          ]
+        },
+        {
+          title: 'Ndarja me palë të treta',
+          paragraphs: [
+            'Ne ndajmë të dhëna vetëm kur është e nevojshme për ofrimin e shërbimit.'
+          ],
+          bullets: [
+            'Stripe për përpunimin e pagesave',
+            'Resend për dërgimin e email-eve të verifikimit',
+            'DigitalOcean Spaces për ruajtjen e imazheve',
+            'Shërbime hostimi dhe analitike për funksionimin e platformës'
+          ]
+        },
+        {
+          title: 'Ruajtja dhe siguria',
+          paragraphs: [
+            'Ne i ruajmë të dhënat për aq kohë sa është e nevojshme për të ofruar shërbimin dhe për të respektuar detyrimet ligjore.',
+            'Përdorim masa teknike dhe organizative për të mbrojtur të dhënat tuaja.'
+          ]
+        },
+        {
+          title: 'Të drejtat dhe zgjedhjet tuaja',
+          paragraphs: [
+            'Ju mund të përditësoni ose fshini të dhënat tuaja nga llogaria.'
+          ],
+          bullets: [
+            'Përditësimi i profilit dhe preferencave',
+            'Kërkesa për fshirjen e llogarisë',
+            'Zgjedhje për njoftime dhe komunikime'
+          ]
+        }
+      ],
+      contact: {
+        title: 'Na kontaktoni',
+        body: 'Nëse keni pyetje rreth privatësisë, na kontaktoni në:',
+        emailLabel: 'Email:',
+        email: 'info@huazo.com'
+      }
+    },
+    terms: {
+      title: 'Kushtet e Shërbimit',
+      subtitle: 'Këto kushte rregullojnë përdorimin e platformës Huazo.',
+      updatedLabel: 'Përditësuar më',
+      updatedDate: '30 Dhjetor 2025',
+      sections: [
+        {
+          title: 'Përdorimi i Huazo',
+          paragraphs: [
+            'Duke përdorur Huazo, pranoni këto kushte. Ju duhet të jeni të paktën 18 vjeç ose të keni pëlqimin e prindit.'
+          ]
+        },
+        {
+          title: 'Llogaria dhe siguria',
+          paragraphs: [
+            'Ju jeni përgjegjës për ruajtjen e kredencialeve dhe për informacionin e saktë në llogarinë tuaj.'
+          ],
+          bullets: [
+            'Mos ndani fjalëkalimin me të tjerët',
+            'Njoftoni menjëherë për përdorim të paautorizuar'
+          ]
+        },
+        {
+          title: 'Listimet dhe përmbajtja e përdoruesit',
+          paragraphs: [
+            'Ju jeni përgjegjës për përmbajtjen që publikoni dhe duhet të keni të drejta mbi artikujt e listuar.'
+          ],
+          bullets: [
+            'Fotot dhe përshkrimet duhet të jenë të sakta',
+            'Nuk lejohet përmbajtje e paligjshme ose mashtruese'
+          ]
+        },
+        {
+          title: 'Rezervimet, pagesat dhe tarifat',
+          paragraphs: [
+            'Pagesat përpunohen nga Stripe. Tarifat dhe komisionet mund të ndryshojnë dhe do të shfaqen para përfundimit të pagesës.'
+          ],
+          bullets: [
+            'Politikat e anulimit mund të ndryshojnë sipas listimit',
+            'Depozitat dhe rimbursimet trajtohen sipas kushteve të qirasë'
+          ]
+        },
+        {
+          title: 'Veprimet e ndaluara',
+          paragraphs: [
+            'Ju nuk mund të përdorni platformën për qëllime të paligjshme ose për të dëmtuar të tjerët.'
+          ],
+          bullets: [
+            'Mashtrimi, abuzimi ose ndërhyrja në shërbim',
+            'Shkelja e të drejtave të autorit ose markës tregtare'
+          ]
+        },
+        {
+          title: 'Mbyllja e llogarisë',
+          paragraphs: [
+            'Ne mund të pezullojmë ose mbyllim llogarinë në rast shkeljeje të kushteve.'
+          ]
+        },
+        {
+          title: 'Përjashtim dhe kufizim përgjegjësie',
+          paragraphs: [
+            'Shërbimi ofrohet \"siç është\". Huazo nuk mban përgjegjësi për humbje indirekte ose dëme të veçanta, në masën e lejuar nga ligji.'
+          ]
+        }
+      ],
+      contact: {
+        title: 'Na kontaktoni',
+        body: 'Nëse keni pyetje rreth këtyre kushteve, na kontaktoni në:',
+        emailLabel: 'Email:',
+        email: 'info@huazo.com'
+      }
+    },
     footer: {
       slogan: 'Ne po rrisim biznesin tuaj me menaxher personal AI.',
       company: 'Kompania',
       resources: 'Burimet',
       legal: 'Ligjore',
+      contactLabel: 'Kontakt:',
+      contactEmail: 'info@huazo.com',
       allRightsReserved: 'Të gjitha të drejtat e rezervuara.',
       links: {
         blog: 'Blog',
@@ -612,7 +809,8 @@ export const translations: { [key: string]: Translations } = {
         loggingIn: 'Po hyni...',
         noAccount: 'Nuk keni llogari?',
         signUp: 'Regjistrohu',
-        errorRequired: 'Ju lutemi plotësoni të gjitha fushat'
+        errorRequired: 'Ju lutemi plotësoni të gjitha fushat',
+        webOnly: 'Hyrja është e disponueshme vetëm në aplikacionin Huazo.'
       },
       signup: {
         title: 'Krijo Llogari',
@@ -967,11 +1165,167 @@ export const translations: { [key: string]: Translations } = {
         address: 'Address'
       }
     },
+    privacy: {
+      title: 'Privacy Policy',
+      subtitle: 'We respect your privacy and explain how we collect and use data to run Huazo.',
+      updatedLabel: 'Last updated',
+      updatedDate: 'December 30, 2025',
+      sections: [
+        {
+          title: 'Information we collect',
+          paragraphs: [
+            'When you create an account or use Huazo, we collect categories of information needed to provide the service.'
+          ],
+          bullets: [
+            'Basic account and profile information',
+            'User-generated content and listings',
+            'Communications and support requests',
+            'Usage and device information',
+            'Analytics events and interactions on the platform',
+            'Location you provide (optional)'
+          ]
+        },
+        {
+          title: 'How we use information',
+          paragraphs: [
+            'We use data to deliver, personalize, and improve the Huazo experience.'
+          ],
+          bullets: [
+            'Create and manage your account',
+            'Process bookings and transactions',
+            'Communicate with you for verification and updates',
+            'Personalize discovery and recommendations',
+            'Protect the platform against fraud and abuse',
+            'Measure usage and improve the service'
+          ]
+        },
+        {
+          title: 'Payments and financial data',
+          paragraphs: [
+            'Payments are processed by Stripe. We do not store full card details.'
+          ],
+          bullets: [
+            'Stripe securely handles payment information',
+            'We receive only what is needed for confirmation and transaction history'
+          ]
+        },
+        {
+          title: 'Sharing and third parties',
+          paragraphs: [
+            'We share data only when needed to provide the service.'
+          ],
+          bullets: [
+            'Stripe for payment processing',
+            'Resend for verification and email delivery',
+            'DigitalOcean Spaces for image storage',
+            'Hosting and analytics services to keep the platform running'
+          ]
+        },
+        {
+          title: 'Retention and security',
+          paragraphs: [
+            'We keep data as long as needed to provide the service and meet legal obligations.',
+            'We use technical and organizational measures to protect your data.'
+          ]
+        },
+        {
+          title: 'Your choices',
+          paragraphs: [
+            'You can update or delete your data from your account.'
+          ],
+          bullets: [
+            'Update profile and preferences',
+            'Request account deletion',
+            'Choose your notification settings'
+          ]
+        }
+      ],
+      contact: {
+        title: 'Contact us',
+        body: 'If you have questions about privacy, contact us at:',
+        emailLabel: 'Email:',
+        email: 'info@huazo.com'
+      }
+    },
+    terms: {
+      title: 'Terms of Service',
+      subtitle: 'These terms govern your use of the Huazo platform.',
+      updatedLabel: 'Last updated',
+      updatedDate: 'December 30, 2025',
+      sections: [
+        {
+          title: 'Using Huazo',
+          paragraphs: [
+            'By using Huazo, you agree to these terms. You must be at least 18 or have parental consent.'
+          ]
+        },
+        {
+          title: 'Account and security',
+          paragraphs: [
+            'You are responsible for keeping your credentials secure and your account information accurate.'
+          ],
+          bullets: [
+            'Do not share your password',
+            'Notify us of any unauthorized access'
+          ]
+        },
+        {
+          title: 'Listings and user content',
+          paragraphs: [
+            'You are responsible for the content you publish and must have rights to the listed items.'
+          ],
+          bullets: [
+            'Photos and descriptions must be accurate',
+            'No illegal or misleading content'
+          ]
+        },
+        {
+          title: 'Bookings, payments, and fees',
+          paragraphs: [
+            'Payments are processed by Stripe. Fees and commissions may change and are shown before checkout.'
+          ],
+          bullets: [
+            'Cancellation policies may vary by listing',
+            'Deposits and refunds follow rental terms'
+          ]
+        },
+        {
+          title: 'Prohibited activities',
+          paragraphs: [
+            'You may not use the platform for unlawful purposes or to harm others.'
+          ],
+          bullets: [
+            'Fraud, abuse, or interference with the service',
+            'Infringing copyrights or trademarks'
+          ]
+        },
+        {
+          title: 'Termination',
+          paragraphs: [
+            'We may suspend or terminate accounts that violate these terms.'
+          ]
+        },
+        {
+          title: 'Disclaimers and limitation of liability',
+          paragraphs: [
+            'The service is provided \"as is\". Huazo is not liable for indirect or special damages to the extent permitted by law.'
+          ]
+        }
+      ],
+      contact: {
+        title: 'Contact us',
+        body: 'If you have questions about these terms, contact us at:',
+        emailLabel: 'Email:',
+        email: 'info@huazo.com'
+      }
+    },
     footer: {
       slogan: 'We growing up your business with personal AI manager.',
       company: 'Company',
       resources: 'Resources',
       legal: 'Legal',
+      contactLabel: 'Contact:',
+      contactEmail: 'info@huazo.com',
       allRightsReserved: 'All rights reserved.',
       links: {
         blog: 'Blog',
@@ -1028,7 +1382,8 @@ export const translations: { [key: string]: Translations } = {
         loggingIn: 'Logging in...',
         noAccount: "Don't have an account?",
         signUp: 'Sign Up',
-        errorRequired: 'Please fill in all fields'
+        errorRequired: 'Please fill in all fields',
+        webOnly: 'Login is available only in the Huazo mobile app.'
       },
       signup: {
         title: 'Create Account',
@@ -1109,4 +1464,3 @@ export const translations: { [key: string]: Translations } = {
     }
   }
 };
-

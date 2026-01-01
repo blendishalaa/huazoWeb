@@ -139,6 +139,25 @@
         </div>
       </div>
 
+      <!-- Categories -->
+      <div class="form-group">
+        <label for="categoryIds" class="form-label">Kategori * (mund të zgjedhësh disa)</label>
+        <select
+          id="categoryIds"
+          name="categoryIds"
+          [(ngModel)]="selectedCategoryIds"
+          multiple
+          required
+          class="form-input"
+          size="5"
+        >
+          <option *ngFor="let category of categories" [value]="category._id">
+            {{ category.name }}
+          </option>
+        </select>
+        <p class="form-hint">Zgjidh një ose më shumë kategori ekzistuese.</p>
+      </div>
+
       <!-- Deposit -->
       <div class="form-group">
         <label for="deposit" class="form-label">{{ translations.addItem?.deposit || 'Deposit' }} (€) *</label>

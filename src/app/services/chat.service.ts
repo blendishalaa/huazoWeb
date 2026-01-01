@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 
 export interface ChatMessage {
   id: string;
@@ -15,32 +13,22 @@ export interface ChatMessage {
   providedIn: 'root'
 })
 export class ChatService {
-  // TODO: Update this URL to your backend API endpoint
-  private apiUrl = 'https://your-backend-api.com/api/chat/send';
-
-  constructor(private http: HttpClient) {}
+  private whatsappBaseUrl = 'https://wa.me';
 
   sendMessage(message: string, phoneNumber: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+    const encodedMessage = encodeURIComponent(message);
+    const url = `${this.whatsappBaseUrl}/${phoneNumber}?text=${encodedMessage}`;
 
-    const body = {
-      message: message,
-      phoneNumber: phoneNumber,
-      timestamp: new Date().toISOString()
-    };
+    if (typeof window !== 'undefined') {
+      const opened = window.open(url, '_blank');
+      if (!opened) {
+        window.location.href = url;
+      }
+    }
 
-    return this.http.post(this.apiUrl, body, { headers }).pipe(
-      catchError(error => {
-        console.error('Error sending message:', error);
-        // Return a successful response for now (you'll handle errors in the component)
-        return of({ success: false, error: error.message });
-      })
-    );
+    return of({ success: true, url });
   }
 }
-
 
 
 
